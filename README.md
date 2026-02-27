@@ -1,211 +1,165 @@
+# 🛡 Threat Intel Mini Aggregator
 
-
-# Threat Intel Mini Aggregator - README
-
-## Overview
-
-Threat Intel Mini Aggregator is a localhost web-based Threat Intelligence Dashboard designed for cybersecurity students and SOC analysts. It allows you to investigate:
-
-- **File Hashes** (SHA256)
-- **IP Addresses**
-- **Domains**
-
-The system integrates with two leading threat intelligence APIs:
-- **MalwareBazaar** - Free malware sample database
-- **VirusTotal** - Multi-antivirus scanning service
-
-### Features
-
-- Auto-detection of indicator type (hash/IP/domain)
-- Risk scoring engine with threat level assessment
-- Correlation engine to normalize data from multiple sources
-- Professional SOC-style dark theme UI
-- Detection visualization with Chart.js
-- Raw JSON data export for analysis
+A structured Threat Intelligence Dashboard built to simulate real-world SOC indicator triage and correlation workflows.
 
 ---
 
-## Setup Instructions for Users
+## 🚀 Executive Summary
 
-### 1. Clone the Repository
+Threat Intel Mini Aggregator is a locally deployed cybersecurity intelligence platform that aggregates data from multiple public threat intelligence sources and transforms it into a normalized, risk-scored analysis report.
 
-```bash
-git clone <repository-url>
-cd threat-intel-dashboard
-```
-
-### 2. Create Virtual Environment
-
-```bash
-# Linux/Mac
-python3 -m venv venv
-source venv/bin/activate
-
-# Windows
-python -m venv venv
-venv\Scripts\activate
-```
-
-### 3. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Configure API Keys
-
-You need your own API keys to use this project:
-
-#### VirusTotal API Key (Required)
-
-1. Go to [VirusTotal](https://www.virustotal.com/gui/join-us)
-2. Create a free account
-3. Navigate to API → API Key
-4. Copy your API key
-
-#### MalwareBazaar (Optional - No key required for basic use)
-
-MalwareBazaar is free and doesn't require an API key for basic queries.
-
-#### Create Your Configuration
-
-```bash
-# Copy the example file
-cp .env.example .env
-```
-
-Edit the `.env` file and add your VirusTotal API key:
-
-```env
-# .env file (DO NOT SHARE THIS FILE)
-VT_API_KEY=your_virustotal_api_key_here
-MB_API_KEY=  # Leave empty - not required
-
-FLASK_DEBUG=False
-FLASK_HOST=127.0.0.1
-FLASK_PORT=5000
-```
-
-### 5. Run the Application
-
-```bash
-python app.py
-```
-
-### 6. Access the Dashboard
-
-Open your browser and navigate to:
-```
-http://127.0.0.1:5000
-```
+This project was designed to bridge the gap between theoretical cybersecurity knowledge and practical analyst workflows.
 
 ---
 
-## How to Use
+## 🎯 Core Objective
 
-### Analyzing an Indicator
+Modern Security Operations Centers rely on correlating multiple intelligence feeds to make informed decisions.
 
-1. **Select Indicator Type** - Choose Hash, IP, or Domain (or use Auto-Detect)
-2. **Enter the Value** - Paste your indicator
-3. **Click "Analyze"** - The system will query both APIs
-4. **View Results** - See risk score, detection stats, and technical details
+This application replicates that process by:
 
-### Sample Indicators to Test
+- Collecting intelligence from multiple APIs
+- Normalizing inconsistent data formats
+- Applying weighted threat scoring logic
+- Presenting actionable results in a structured dashboard
 
-| Type | Value | Description |
-|------|-------|-------------|
-| Hash | `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855` | Empty file hash |
-| IP | `8.8.8.8` | Google DNS |
-| IP | `1.1.1.1` | Cloudflare DNS |
-| Domain | `example.com` | Example domain |
+The goal is not just to query APIs — but to simulate analyst reasoning.
 
 ---
 
-## Architecture
+## 🔎 Supported Indicators
 
-```
-User Browser
-     │
-     ▼
-Flask Web Server (app.py)
-     │
-     ├── Input Validation
-     │
-     ▼
-Service Layer
-     ├── MalwareBazaar Service
-     └── VirusTotal Service
-     │
-     ▼
-Correlation Engine (normalizes data)
-     │
-     ▼
-Risk Scoring Engine (calculates threat level)
-     │
-     ▼
-UI Render (HTML/CSS/JS)
-```
+The system can analyze:
+
+- SHA256 File Hashes  
+- IPv4 Addresses  
+- Domain Names  
+
+Indicator type detection can be manual or automatic.
 
 ---
 
-## Risk Scoring Logic
+## 🧠 Intelligence Sources
 
-| Condition | Points |
-|-----------|--------|
-| VT malicious detections > 30 | +3 |
-| Malware family identified | +2 |
-| Ransomware tag detected | +3 |
-| Suspicious detections > 10 | +1 |
+The aggregator integrates:
 
-### Risk Levels
+- **VirusTotal** – Multi-engine malware and reputation analysis  
+- **MalwareBazaar** – Malware sample intelligence database  
 
-- **LOW** (Score 0-2): Clean or minor indicators
-- **MEDIUM** (Score 3-5): Requires attention
-- **HIGH** (Score 6+): Immediate investigation recommended
+Each source is queried independently, then correlated into a unified internal data structure.
 
 ---
 
-## Security Notes
+## ⚙️ System Design
 
-- This tool is for **educational and defensive purposes only**
-- Always verify threat intelligence with multiple sources
-- API keys are stored locally - never committed to version control
-- Rate limits apply ( VirusTotal: 4 requests/minute free tier)
+### Architecture Philosophy
 
----
+This project follows a layered design approach:
 
-## Troubleshooting
+1. **Input Validation Layer**  
+   Sanitizes and validates indicators.
 
-### "VirusTotal API key not configured"
+2. **Service Layer**  
+   Handles API requests and response parsing.
 
-You need to add your API key to the `.env` file. See Step 4 above.
+3. **Normalization Layer**  
+   Converts heterogeneous API schemas into a standard internal format.
 
-### "Rate limit exceeded"
+4. **Correlation & Risk Engine**  
+   Applies weighted logic to calculate final threat levels.
 
-VirusTotal free tier has limits. Wait a minute and try again.
+5. **Presentation Layer**  
+   Renders results using a professional SOC-style interface.
 
-### "Request timeout"
-
-Check your internet connection and try again.
-
----
-
-## Future Improvements
-
-- [ ] Add more threat intel sources (AlienVault OTX, AbuseIPDB)
-- [ ] Implement caching to reduce API calls
-- [ ] Add database for query history
-- [ ] Export reports to PDF/JSON
-- [ ] User authentication
+This modular design allows easy expansion to additional threat feeds.
 
 ---
 
-## License
+## 📊 Risk Scoring Model
 
-Educational Use Only | For Learning & Defensive Security
+Rather than relying purely on raw detection counts, the risk engine applies weighted intelligence indicators:
+
+- High malicious detection threshold increases severity
+- Malware family attribution adds contextual risk
+- Ransomware tagging escalates urgency
+- Suspicious classifications increase monitoring priority
+
+Risk levels are classified as:
+
+- LOW  
+- MEDIUM  
+- HIGH  
+
+This provides triage-level decision support.
 
 ---
 
-## Disclaimer
+## 🖥 User Interface Features
 
-This tool is for educational purposes. Always follow responsible disclosure practices and respect API terms of service.
+- Dark-themed SOC-style dashboard
+- Detection ratio visualization
+- Aggregated threat summary
+- Raw JSON inspection option
+- Clean indicator result presentation
+
+The interface is intentionally structured to mimic real threat analysis tools.
+
+---
+
+## 🛠 Technology Stack
+
+- Python
+- Flask
+- REST API Integration
+- Environment Variable Configuration
+- Chart.js (Frontend Visualization)
+
+---
+
+## 🔐 Secure Configuration
+
+- API keys stored in `.env`
+- Sensitive credentials excluded from version control
+- Local execution to reduce exposure risk
+- Input validation to prevent malformed queries
+
+---
+
+## 🧪 Educational & Practical Value
+
+This project demonstrates competency in:
+
+- RESTful API integration
+- Backend service abstraction
+- Data normalization strategies
+- Risk modeling logic
+- Secure credential handling
+- Practical SOC workflow simulation
+
+It serves as both a learning platform and a portfolio-ready cybersecurity automation project.
+
+---
+
+## 🚧 Planned Enhancements
+
+- Multi-source expansion (OTX, AbuseIPDB, etc.)
+- Historical query logging
+- Intelligent caching layer
+- Report export functionality
+- Optional authentication system
+
+---
+
+## 👩‍💻 Author
+
+Anamika Vinod  
+Cybersecurity Enthusiast | Threat Analysis Learner  
+
+Focused on automation, intelligence correlation, and practical defensive security tools.
+
+---
+
+## 📜 Disclaimer
+
+This tool is built for educational and defensive security purposes only.  
+Users are responsible for complying with API usage policies and ethical cybersecurity practices.
