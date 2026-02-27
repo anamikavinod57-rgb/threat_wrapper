@@ -1,10 +1,10 @@
-# 🛡 Threat Intel Mini Aggregator
+#  Threat Intel Mini Aggregator
 
 A structured Threat Intelligence Dashboard built to simulate real-world SOC indicator triage and correlation workflows.
 
 ---
 
-## 🚀 Executive Summary
+##  Executive Summary
 
 Threat Intel Mini Aggregator is a locally deployed cybersecurity intelligence platform that aggregates data from multiple public threat intelligence sources and transforms it into a normalized, risk-scored analysis report.
 
@@ -12,7 +12,7 @@ This project was designed to bridge the gap between theoretical cybersecurity kn
 
 ---
 
-## 🎯 Core Objective
+##  Core Objective
 
 Modern Security Operations Centers rely on correlating multiple intelligence feeds to make informed decisions.
 
@@ -27,7 +27,7 @@ The goal is not just to query APIs — but to simulate analyst reasoning.
 
 ---
 
-## 🔎 Supported Indicators
+##  Supported Indicators
 
 The system can analyze:
 
@@ -39,7 +39,7 @@ Indicator type detection can be manual or automatic.
 
 ---
 
-## 🧠 Intelligence Sources
+##  Intelligence Sources
 
 The aggregator integrates:
 
@@ -50,7 +50,7 @@ Each source is queried independently, then correlated into a unified internal da
 
 ---
 
-## ⚙️ System Design
+##  System Design
 
 ### Architecture Philosophy
 
@@ -75,7 +75,7 @@ This modular design allows easy expansion to additional threat feeds.
 
 ---
 
-## 📊 Risk Scoring Model
+##  Risk Scoring Model
 
 Rather than relying purely on raw detection counts, the risk engine applies weighted intelligence indicators:
 
@@ -94,7 +94,7 @@ This provides triage-level decision support.
 
 ---
 
-## 🖥 User Interface Features
+##  User Interface Features
 
 - Dark-themed SOC-style dashboard
 - Detection ratio visualization
@@ -106,7 +106,7 @@ The interface is intentionally structured to mimic real threat analysis tools.
 
 ---
 
-## 🛠 Technology Stack
+##  Technology Stack
 
 - Python
 - Flask
@@ -116,7 +116,7 @@ The interface is intentionally structured to mimic real threat analysis tools.
 
 ---
 
-## 🔐 Secure Configuration
+##  Secure Configuration
 
 - API keys stored in `.env`
 - Sensitive credentials excluded from version control
@@ -125,7 +125,7 @@ The interface is intentionally structured to mimic real threat analysis tools.
 
 ---
 
-## 🧪 Educational & Practical Value
+##  Educational & Practical Value
 
 This project demonstrates competency in:
 
@@ -140,7 +140,7 @@ It serves as both a learning platform and a portfolio-ready cybersecurity automa
 
 ---
 
-## 🚧 Planned Enhancements
+##  Planned Enhancements
 
 - Multi-source expansion (OTX, AbuseIPDB, etc.)
 - Historical query logging
@@ -150,7 +150,7 @@ It serves as both a learning platform and a portfolio-ready cybersecurity automa
 
 ---
 
-## 👩‍💻 Author
+##  Author
 
 Anamika Vinod  
 Cybersecurity Enthusiast | Threat Analysis Learner  
@@ -159,7 +159,7 @@ Focused on automation, intelligence correlation, and practical defensive securit
 
 ---
 
-## 📜 Disclaimer
+##  Disclaimer
 
 This tool is built for educational and defensive security purposes only.  
 Users are responsible for complying with API usage policies and ethical cybersecurity practices.
