@@ -1,20 +1,4 @@
-# ⚠️ IMPORTANT: Security Warning - Do Not Commit API Keys!
 
-## Before uploading to GitHub
-
-**NEVER commit your `.env` file** - it contains your live API keys!
-
-The `.env` file is already in `.gitignore` (you need to add this), but please verify:
-
-```bash
-# Make sure .env is NOT tracked by git
-echo ".env" >> .gitignore
-echo "venv/" >> .gitignore
-echo "__pycache__/" >> .gitignore
-echo "*.pyc" >> .gitignore
-```
-
----
 
 # Threat Intel Mini Aggregator - README
 
